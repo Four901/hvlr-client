@@ -10,8 +10,8 @@ const SignUp = (props) => {
     const navigate=useNavigate()
     const [credentials,setcredentials]=useState({email:"",Password:""})
 
-      const host="http://localhost:5000"
-
+     // const host="http://localhost:5000"
+     const host="https://sevenhvlr-api.onrender.com"
     //const host="https://sangrahalaya.herokuapp.com"
     
     
@@ -24,8 +24,8 @@ const SignUp = (props) => {
           alert("Please Enter Required Details")
         }
         else{
-          //console.log("submit")
-          //console.log(credentials)
+          ////console.log("submit")
+          ////console.log(credentials)
           const response=await fetch(`${host}/api/auth/createuser`,{
             method:"POST",
             headers:{
@@ -35,7 +35,7 @@ const SignUp = (props) => {
           
         
           });
-          //console.log("p"+response)
+          ////console.log("p"+response)
           const json=await response.json();
         
         //  dispatch(register(credentials.name,credentials.email,credentials.Type,credentials.empNo,credentials.userName,credentials.dobDate,credentials.dateOfJoining,credentials.password))
@@ -55,11 +55,11 @@ const SignUp = (props) => {
     }
     
     const onChange=(e)=>{
-        //console.log("ohkhhh")
+        ////console.log("ohkhhh")
         
         setcredentials({...credentials,[e.target.name]:e.target.value});
        
-        //console.log(credentials)
+        ////console.log(credentials)
       }
   return (
 

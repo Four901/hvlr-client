@@ -4,7 +4,8 @@ const HVLR = () => {
   const navigate=useNavigate()
     const Initialhvrls=[]
     const [hvlrs,SetHvlrs]=useState(Initialhvrls)
-    const host="http://localhost:5000"
+   // const host="http://localhost:5000"
+   const host="https://sevenhvlr-api.onrender.com";
     const StringAuthToken=localStorage.getItem('token')
 
    
@@ -16,7 +17,7 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         'Content-Type': 'application/json'
       }  });
     const json=await response.json();
-     console.log(json.device)
+    // //console.log(json.device)
      SetHvlrs(json.device)
     }
     const addDevice=async()=>{
@@ -29,15 +30,15 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         'Content-Type': 'application/json'
       }  });
     const json=await response.json();
-  console.log(json)
+ // //console.log(json)
   getDevices();
     }
     const updateDevice=async({id,d,name})=>{
-      console.log(id+" "+d+" "+name)
+      //console.log(id+" "+d+" "+name)
      //updating
      if(name=='left')
      {
-      console.log("left")
+      //console.log("left")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -47,11 +48,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D0:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
      }
      else if(name=='right')
      {
-      console.log("right")
+      //console.log("right")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -61,11 +62,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D1:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
      }
      else if(name=='up')
      {
-      console.log("up")
+      //console.log("up")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -75,11 +76,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D4:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
      }
      else if(name=='down')
      {
-      console.log("down")
+      //console.log("down")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -89,11 +90,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D5:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
      }
      else if(name=='openjet')
      {
-      console.log("openjet")
+      //console.log("openjet")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -103,11 +104,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D3:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
      }
      else if(name=='closejet')
      {
-      console.log("closejet")
+      //console.log("closejet")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -117,11 +118,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D2:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
      }
      else if(name=='openfoam')
     {
-      console.log("openfoam")
+      //console.log("openfoam")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -131,11 +132,11 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D6:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
     }
     else if(name=='closefoam')
     {
-      console.log("closefoam")
+      //console.log("closefoam")
       const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
         method:"PUT",
         headers:{
@@ -145,7 +146,7 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         body:JSON.stringify({D7:(!d)}) 
         });
       const json=await response.json();
-       console.log(json)
+       //console.log(json)
     }
      getDevices();
      

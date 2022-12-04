@@ -5,8 +5,9 @@ const Login =  (props) => {
  
     const navigate=useNavigate()
     const [credentials,setcredentials]=useState({email:"",Password:""})
-    const host="http://localhost:5000"
+   // const host="http://localhost:5000"
    //const host="https://sangrahalaya.herokuapp.com";
+   const host="https://sevenhvlr-api.onrender.com";
     const handleSubmit=async(e)=>{
         e.preventDefault();
         const response=await fetch(`${host}/api/auth/loginuser`,{
@@ -17,13 +18,13 @@ const Login =  (props) => {
             body:JSON.stringify({email:credentials.email,Password:credentials.Password})
           });
           const json=await response.json();
-          //console.log(json)
+          ////console.log(json)
           if(json.Success)
           {
             // props.showAlert("Login was Successfull","success")
              localStorage.setItem('token',json.AuthToken)
-             //console.log("yehhhhhh")
-             //console.log(json)
+             ////console.log("yehhhhhh")
+             ////console.log(json)
              navigate('/hvlr')//just like history if we want to go to another page automatically
           }
           else{
@@ -32,9 +33,9 @@ const Login =  (props) => {
           }
     }
     const onChange=(e)=>{
-        //console.log("ohkhhh")
+        ////console.log("ohkhhh")
         setcredentials({...credentials,[e.target.name]:e.target.value});
-        //console.log(credentials)
+        ////console.log(credentials)
       }
   return (
     <div className='container' style={{backgroundColor:'#e6ffee'}} >
