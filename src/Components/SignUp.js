@@ -11,10 +11,10 @@ const SignUp = (props) => {
     const [credentials,setcredentials]=useState({email:"",Password:""})
 
      // const host="http://localhost:5000"
-     const host="https://sevenhvlr-api.onrender.com"
+     //const host="https://sevenhvlr-api.onrender.com"
     //const host="https://sangrahalaya.herokuapp.com"
     
-    
+    const host="https://hvlr-server-production.up.railway.app"
     const handleSubmit=async(e)=>{
       
         e.preventDefault();

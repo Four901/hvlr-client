@@ -1,14 +1,16 @@
 import React ,{useState}from 'react';
 import { useNavigate} from 'react-router-dom';
 
-const Login =  (props) => {
+const Login =(props) => {
  
     const navigate=useNavigate()
     const [credentials,setcredentials]=useState({email:"",Password:""})
    // const host="http://localhost:5000"
    //const host="https://sangrahalaya.herokuapp.com";
-   const host="https://sevenhvlr-api.onrender.com";
+  // const host="https://sevenhvlr-api.onrender.com";
+  const host="https://hvlr-server-production.up.railway.app"
     const handleSubmit=async(e)=>{
+     
         e.preventDefault();
         const response=await fetch(`${host}/api/auth/loginuser`,{
             method:"POST",
@@ -19,6 +21,7 @@ const Login =  (props) => {
           });
           const json=await response.json();
           ////console.log(json)
+          console.log('loggin in')
           if(json.Success)
           {
             // props.showAlert("Login was Successfull","success")

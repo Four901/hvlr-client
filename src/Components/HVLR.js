@@ -5,8 +5,9 @@ const HVLR = () => {
     const Initialhvrls=[]
     const [hvlrs,SetHvlrs]=useState(Initialhvrls)
    // const host="http://localhost:5000"
-   const host="https://sevenhvlr-api.onrender.com";
-    const StringAuthToken=localStorage.getItem('token')
+  // const host="https://sevenhvlr-api.onrender.com";
+   const host="https://hvlr-server-production.up.railway.app"
+  const StringAuthToken=localStorage.getItem('token')
 
    
     const getDevices=async()=>{
@@ -151,6 +152,7 @@ const response=await fetch(`${host}/api/device/getdevices`,{
      getDevices();
      
   }
+  
     const handlelogout=()=>{
       localStorage.removeItem('token')
       navigate('/sign-up')
@@ -170,7 +172,8 @@ const response=await fetch(`${host}/api/device/getdevices`,{
        {hvlrs.map((hvlr,index)=>{
         return <div key={index} className='container my-3' style={{display:'flex'}}>
               <div style={{fontSize:'10px'}}>
-                HVLR:{index}
+                HVLR:{index}-
+                  {hvlr.status=='online'?<span className='success'>Online</span>:<span className='warning'>Offline</span>}
               </div>
               <div className='mx-2'>
               <div>
