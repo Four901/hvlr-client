@@ -29,7 +29,7 @@ const Login =  (props) => {
           }
           else{
             //props.showAlert("Can't Login","error")
-                alert("nghjm")
+                alert("Enter correct details")
           }
     }
     const onChange=(e)=>{
