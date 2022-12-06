@@ -3,7 +3,7 @@ import HVLR from "./Components/HVLR";
 import Login from "./Components/Login";
 import SignUp from "./Components/SignUp";
 import {
-  HashRouter as Router,
+  BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom";
