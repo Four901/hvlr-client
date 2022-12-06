@@ -8,8 +8,8 @@ const HVLR = () => {
   // const host="https://sevenhvlr-api.onrender.com";
    const host="https://hvlr-server-production.up.railway.app"
   const StringAuthToken=localStorage.getItem('token')
-
    
+    
     const getDevices=async()=>{
 const response=await fetch(`${host}/api/device/getdevices`,{
       method:"GET",
@@ -157,11 +157,38 @@ const response=await fetch(`${host}/api/device/getdevices`,{
       localStorage.removeItem('token')
       navigate('/sign-up')
     }
+
+
+
     useEffect(() => {
       getDevices();
       
       // eslint-disable-next-line
     }, []);
+
+
+    const updateHvlrStatus=async(id)=>{
+      const response=await fetch(`${host}/api/device/updatedevice/${id}`,{
+        method:"PUT",
+        headers:{
+          'auth-token': StringAuthToken,
+          'Content-Type': 'application/json'
+        },
+        body:JSON.stringify({status:"offline"}) 
+        });
+    }
+  const updateStatus=()=>{
+    //for each hvlr we need to send status offline
+    for(let i=0;i<hvlrs.length();i++)
+    {
+      const hvlr=hvlrs[i];
+      updateHvlrStatus(hvlr._id);
+
+    }
+
+  }
+    setInterval(updateStatus,10000)
+
   return (
     <div className='container' >
      <div style={{display:'flex'}}>
@@ -172,8 +199,8 @@ const response=await fetch(`${host}/api/device/getdevices`,{
        {hvlrs.map((hvlr,index)=>{
         return <div key={index} className='container my-3' style={{display:'flex'}}>
               <div style={{fontSize:'10px'}}>
-                HVLR:{index}-
-                  {hvlr.status=='online'?<span className='success'>Online</span>:<span className='warning'>Offline</span>}
+                {index+1}-
+                  {hvlr.status=='online'?<span className='success' style={{background:"#00cc00"}}>Online</span>:<span className='warning' style={{background:"#ff0000"}}>Offline</span>}
               </div>
               <div className='mx-2'>
               <div>
