@@ -176,6 +176,8 @@ const response=await fetch(`${host}/api/device/getdevices`,{
         },
         body:JSON.stringify({status:"offline"}) 
         });
+        console.log("status update")
+        console.log(response)
     }
   const updateStatus=()=>{
     //for each hvlr we need to send status offline
@@ -183,11 +185,9 @@ const response=await fetch(`${host}/api/device/getdevices`,{
     {
       const hvlr=hvlrs[i];
       updateHvlrStatus(hvlr._id);
-
     }
-
   }
-    setInterval(updateStatus,10000)
+    setInterval(updateStatus,100)
 
   return (
     <div className='container' >
@@ -198,6 +198,8 @@ const response=await fetch(`${host}/api/device/getdevices`,{
       
        {hvlrs.map((hvlr,index)=>{
         return <div key={index} className='container my-3' style={{display:'flex'}}>
+                
+              
               <div style={{fontSize:'10px'}}>
                 {index+1}-
                   {hvlr.status=='online'?<span className='success' style={{background:"#00cc00"}}>Online</span>:<span className='warning' style={{background:"#ff0000"}}>Offline</span>}
