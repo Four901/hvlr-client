@@ -1,5 +1,6 @@
 import React,{useState,useEffect} from 'react'
 import { useNavigate} from 'react-router-dom';
+import GetImage from './GetImage';
 const HVLR = () => {
   const navigate=useNavigate()
     const Initialhvrls=[]
@@ -20,7 +21,14 @@ const response=await fetch(`${host}/api/device/getdevices`,{
     const json=await response.json();
     // //console.log(json.device)
      SetHvlrs(json.device)
+    
+    
+    
+    
+     console.log("hvlrs")
+     console.log(json.device)
     }
+
     const addDevice=async()=>{
     //adding the device 
    
@@ -161,6 +169,7 @@ const response=await fetch(`${host}/api/device/getdevices`,{
 
 
     useEffect(() => {
+      updateStatus();
       getDevices();
       
       // eslint-disable-next-line
@@ -174,20 +183,25 @@ const response=await fetch(`${host}/api/device/getdevices`,{
           'auth-token': StringAuthToken,
           'Content-Type': 'application/json'
         },
-        body:JSON.stringify({status:"offline"}) 
+        body:JSON.stringify({status:"offline",camStatus:'offline'}) 
         });
-        console.log("status update")
-        console.log(response)
+       
     }
   const updateStatus=()=>{
     //for each hvlr we need to send status offline
-    for(let i=0;i<hvlrs.length();i++)
+    for(let i=0;i<hvlrs.length;i++)
     {
       const hvlr=hvlrs[i];
       updateHvlrStatus(hvlr._id);
     }
   }
-    setInterval(updateStatus,100)
+  const fun=()=>{
+    updateStatus();
+    console.log("updated")
+    getDevices();
+  }
+     //setInterval(fun,100000)
+    // setInterval(getDevices,8000)
 
   return (
     <div className='container' >
@@ -197,12 +211,18 @@ const response=await fetch(`${host}/api/device/getdevices`,{
      </div>
       
        {hvlrs.map((hvlr,index)=>{
-        return <div key={index} className='container my-3' style={{display:'flex'}}>
+
+        return <div  key={index} className='container my-3'>
+            
+                <GetImage bufi={hvlr.preImage}   />
+                <div style={{display:'flex',marginLeft:'100px'}} >Camera-{hvlr.camStatus==='online'?<span className='success' style={{background:"#00cc00"}}>Online</span>:<span className='warning' style={{background:"#ff0000"}}>Offline</span>}</div>
+               
+               <div style={{display:'flex'}}className="my-3">
                 
               
               <div style={{fontSize:'10px'}}>
                 {index+1}-
-                  {hvlr.status=='online'?<span className='success' style={{background:"#00cc00"}}>Online</span>:<span className='warning' style={{background:"#ff0000"}}>Offline</span>}
+                  {hvlr.status==='online'?<span className='success' style={{background:"#00cc00"}}>Online</span>:<span className='warning' style={{background:"#ff0000"}}>Offline</span>}
               </div>
               <div className='mx-2'>
               <div>
@@ -238,6 +258,7 @@ const response=await fetch(`${host}/api/device/getdevices`,{
               </div>
               
               
+            </div>
             </div>
        })}
 
