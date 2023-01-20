@@ -214,9 +214,9 @@ const response=await fetch(`${host}/api/device/getdevices`,{
 
         return <div  key={index} className='container my-3'>
             
-                <GetImage bufi={hvlr.preImage}   />
+              {/*<GetImage bufi={hvlr.preImage}   />
                 <div style={{display:'flex',marginLeft:'100px'}} >Camera-{hvlr.camStatus==='online'?<span className='success' style={{background:"#00cc00"}}>Online</span>:<span className='warning' style={{background:"#ff0000"}}>Offline</span>}</div>
-               
+       */}
                <div style={{display:'flex'}}className="my-3">
                 
               
